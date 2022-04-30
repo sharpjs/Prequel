@@ -2,8 +2,9 @@
 
 Prequel is a minimal SQLCMD-compatible preprocessor.
 
-Prequel adds a 'SQLCMD mode' to your app with a couple lines of code.  It
-supports `GO`, `$(var)`, `:setvar`, and `:r`.
+- Adds a 'SQLCMD mode' to your project with a couple lines of code.
+- Supports `GO`, `$(var)`, `:setvar`, and `:r`.
+- Does not require the SQLCMD utility to be present.
 
 ## Status
 
