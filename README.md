@@ -1,19 +1,84 @@
 # Prequel
 
-Minimal SQLCMD preprocessor.
-Adds a 'SQLCMD mode' to your app with one line of code.
+Prequel is a minimal SQLCMD-compatible preprocessor.
+
+Prequel adds a 'SQLCMD mode' to your app with a couple lines of code.  It
+supports `GO`, `$(var)`, `:setvar`, and `:r`.
 
 ## Status
 
-WIP
+Nearing release.
+
+<!--
+- **Stable:**     in private use for years with no reported defect.
+- **Tested:**     100% code coverage by automated tests.
+- **Documented:** IntelliSense on everything.
+-->
 
 ## Installation
 
 WIP
+<!--
+Install [this NuGet Package](https://example.com) in your project.
+-->
 
 ## Usage
 
-WIP
+SQL in, preprocessed batches out — it's as simple as that.
+
+```csharp
+// Import the namespace
+using Prequel;
+
+// Create a preprocessor
+var preprocessor = new SqlCmdPreprocessor();
+
+// Optional: set some preprocessor variables
+preprocessor.Variables["Foo"] = "Bar";
+
+// Preprocess!
+var batches = preprocessor.Process(sql);
+
+// Do something with the batches
+foreach (var batch in batches)
+{
+    // ...
+}
+```
+
+## SQLCMD Features
+
+Prequel supports a limited subset of
+[SQLCMD](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility)
+preprocessing features.
+
+### `GO` — batch separator
+
+```sql
+SELECT * FROM Foo; -- first batch
+GO
+SELECT * FROM Bar; -- second batch
+```
+
+### `$(var)` — preprocessor variable expansion
+
+```sql
+SELECT $(Columns) FROM Foo;
+```
+
+### `:setvar` — set a preprocessor variable
+
+```sql
+:setvar Columns Name        -- this works
+:setvar Columns "Id, Name"  -- this also works
+```
+
+### `:r` — include a file
+
+```sql
+:r OtherFile.sql     -- this works
+:r "Other File.sql"  -- this also works
+```
 
 <!--
   Copyright 2022 Jeffrey Sharp
