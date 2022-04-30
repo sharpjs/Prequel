@@ -17,10 +17,7 @@ Nearing release.
 
 ## Installation
 
-WIP
-<!--
-Install [this NuGet Package](https://example.com) in your project.
--->
+Install [this NuGet Package](https://www.nuget.org/packages/Prequel) in your project.
 
 ## Usage
 
