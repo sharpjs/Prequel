@@ -8,13 +8,13 @@ Prequel is a minimal SQLCMD-compatible preprocessor.
 
 ## Status
 
-Nearing release.
+[![Build](https://github.com/sharpjs/Prequel/workflows/Build/badge.svg)](https://github.com/sharpjs/Prequel/actions)
+[![NuGet](https://img.shields.io/nuget/v/Prequel.svg)](https://www.nuget.org/packages/Prequel)
+[![NuGet](https://img.shields.io/nuget/dt/Prequel.svg)](https://www.nuget.org/packages/Prequel)
 
-<!--
-- **Stable:**     in private use for years with no reported defect.
-- **Tested:**     100% code coverage by automated tests.
+- **Stable:**     in private use for years with no reported defects.
+- **Tested:**     100% coverage by automated tests.
 - **Documented:** IntelliSense on everything.
--->
 
 ## Installation
 
@@ -44,7 +44,7 @@ foreach (var batch in batches)
 }
 ```
 
-## SQLCMD Features
+## SQLCMD Feature Support
 
 Prequel supports a limited subset of
 [SQLCMD](https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility)
