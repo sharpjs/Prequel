@@ -31,8 +31,8 @@
 
   <!-- Visibility -->
   <ItemGroup>
-    <InternalsVisibleTo Include="Prequel.Tests"/>
-    <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
+    <InternalsVisibleTo Include="Prequel.Tests" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
     <!-- Required for Moq to mock a class with an internal abstract method. -->
   </ItemGroup>
   <ItemGroup>
@@ -49,7 +49,7 @@
     <PackageReference Include="SauceControl.InheritDoc" Version="1.3.0" PrivateAssets="all" />
   </ItemGroup>
 
-  <!-- SourceLink https://github.com/dotnet/sourcelink/blob/master/README.md -->
+  <!-- SourceLink https://github.com/dotnet/sourcelink/blob/main/README.md -->
   <ItemGroup Condition="'$(IsPackable)' == 'true'">
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="all" />
   </ItemGroup>
