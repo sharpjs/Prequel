@@ -224,11 +224,11 @@ public class SqlCmdPreprocessorTests
         };
 
         var batches = preprocessor.Process(
-            Lines(eol, eof, "a $(FOO) b")
+            Lines(eol, eof, "a $(FOO) b $(foo) c")
         );
 
         batches.Should().Equal(
-            Lines(eol, eof, "a bar b")
+            Lines(eol, eof, "a bar b bar c")
         );
     }
 
@@ -285,11 +285,11 @@ public class SqlCmdPreprocessorTests
         };
 
         var batches = preprocessor.Process(
-            Lines(eol, eof, "a 'b '' $(fOO) c' d")
+            Lines(eol, eof, "a 'b '' $(fOO) $(Foo) c' d")
         );
 
         batches.Should().Equal(
-            Lines(eol, eof, "a 'b '' bar c' d")
+            Lines(eol, eof, "a 'b '' bar bar c' d")
         );
     }
 
@@ -303,11 +303,11 @@ public class SqlCmdPreprocessorTests
         };
 
         var batches = preprocessor.Process(
-            Lines(eol, eof, "a [b ]] $(fOo) c] d")
+            Lines(eol, eof, "a [b ]] $(fOo) $(foO) c] d")
         );
 
         batches.Should().Equal(
-            Lines(eol, eof, "a [b ]] bar c] d")
+            Lines(eol, eof, "a [b ]] bar bar c] d")
         );
     }
 

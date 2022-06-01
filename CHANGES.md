@@ -10,6 +10,8 @@ Most lines should begin with one of these words:
 -->
 
 ## [1.0.2](https://github.com/sharpjs/Prequel/compare/release/1.0.1..release/1.0.2)
+- Fix incorrect result or index-out-of-range exception when multiple variable 
+  replacements occur in a quoted string or in a quoted identifier.
 
 ## [1.0.1](https://github.com/sharpjs/Prequel/compare/release/1.0.0..release/1.0.1)
 - Fix missing IntelliSense.

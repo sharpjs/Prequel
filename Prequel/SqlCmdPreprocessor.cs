@@ -350,7 +350,7 @@ public class SqlCmdPreprocessor
                 return;
             }
 
-            builder.Append(text, start, match.Index);
+            builder.Append(text, start, match.Index - start);
             builder.Append(GetVariableReplacement(match));
 
             start = match.Index + match.Length;
