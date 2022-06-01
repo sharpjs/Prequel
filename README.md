@@ -68,15 +68,27 @@ SELECT $(Columns) FROM Foo;
 
 ```sql
 :setvar Columns Name        -- this works
-:setvar Columns "Id, Name"  -- this also works
+:setvar Columns "Id, Name"  -- also works; required if value contains space
 ```
 
 ### `:r` — include a file
 
 ```sql
 :r OtherFile.sql     -- this works
-:r "Other File.sql"  -- this also works
+:r "Other File.sql"  -- also works; required if path contains space
 ```
+
+### Notes
+
+Preprocessor directives are case-insensitive.
+
+A `GO` batch separator must appear the the beginning of a line.
+No other content may appear on that line.
+
+A `:setvar` or `:r` directive must appear at the beginning of a line.
+An optional line comment may follow the directive.
+
+`$(…)` may appear anywhere, including inside other preprocessor directives.
 
 <!--
   Copyright 2022 Jeffrey Sharp
