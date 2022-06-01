@@ -5,9 +5,11 @@ Most lines should begin with one of these words:
 *Add*, *Fix*, *Update*, *Change*, *Deprecate*, *Remove*.
 
 <!--
-## [Unreleased](https://github.com/sharpjs/Prequel/compare/release/1.0.1..HEAD)
+## [Unreleased](https://github.com/sharpjs/Prequel/compare/release/1.0.2..HEAD)
 (none)
 -->
+
+## [1.0.2](https://github.com/sharpjs/Prequel/compare/release/1.0.1..release/1.0.2)
 
 ## [1.0.1](https://github.com/sharpjs/Prequel/compare/release/1.0.0..release/1.0.1)
 - Fix missing IntelliSense.
