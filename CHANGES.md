@@ -10,6 +10,8 @@ Most lines should begin with one of these words:
 -->
 
 ## [1.0.3](https://github.com/sharpjs/Prequel/compare/release/1.0.2..release/1.0.3)
+- Fix packaging issues:
+  - Enable deterministic build.
 
 ## [1.0.2](https://github.com/sharpjs/Prequel/compare/release/1.0.1..release/1.0.2)
 - Fix incorrect result or index-out-of-range exception when multiple variable 
