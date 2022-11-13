@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Subatomix.Testing" Version="2.2.0" />
+    <PackageReference Include="Subatomix.Testing" Version="2.4.0-rc.2" />
   </ItemGroup>
 
 </Project>
