@@ -425,62 +425,62 @@ public class SqlCmdPreprocessor
     }
 
     private static readonly Regex TokenRegex = new(
-        @"
-            '    ( [^']  | ''   )*      ( '     | \z ) |    # string
-            \[   ( [^\]] | \]\] )*      ( \]    | \z ) |    # quoted identifier
-            --   .*?                    ( \r?\n | \z ) |    # line comment
-            /\*  ( .     | \n   )*?     ( \*/   | \z ) |    # block comment
-            \$\( (?<name> [\w-]+ )      ( \)    | \z ) |    # variable replacement
-            ^GO                         ( \r?\n | \z ) |    # batch separator
-            ^:(r|setvar) (?<args>                           # directives
-                ( [^""\r\n]
-                | \r (?!\n)
-                | "" ( [^""] | """" )*  ( ""    | \z )
-                )*
-            )                           ( \r?\n | \z )
-        ",
+        """
+        '    ( [^']  | ''   )*      ( '     | \z ) |    # string
+        \[   ( [^\]] | \]\] )*      ( \]    | \z ) |    # quoted identifier
+        --   .*?                    ( \r?\n | \z ) |    # line comment
+        /\*  ( .     | \n   )*?     ( \*/   | \z ) |    # block comment
+        \$\( (?<name> [\w-]+ )      ( \)    | \z ) |    # variable replacement
+        ^GO                         ( \r?\n | \z ) |    # batch separator
+        ^:(r|setvar) (?<args>                           # directives
+            ( [^"\r\n]
+            | \r (?!\n)
+            | " ( [^"] | "" )*      ( "     | \z )
+            )*
+        )                           ( \r?\n | \z )
+        """,
         Options
     );
 
     private static readonly Regex VariableRegex = new(
-        @"
-            \$\( (?<name>\w+) \)
-        ",
+        """
+        \$\( (?<name>\w+) \)
+        """,
         Options
     );
 
     private static readonly Regex IncludeRegex = new(
-        @"
-            \A [ \t]+
+        """
+        \A [ \t]+
 
-            (?<path> [^"" \t\r\n]+                      # unquoted
-            |        "" ( [^""] | """" )* ( "" | \z )   # quoted
-            )
+        (?<path> [^" \t\r\n]+                   # unquoted
+        |        " ( [^"] | "" )* ( " | \z )    # quoted
+        )
 
-            [ \t]* (-- .*)? \z
-        ",
+        [ \t]* (-- .*)? \z
+        """,
         Options
     );
 
     private static readonly Regex SetVariableRegex = new(
-        @"
-            \A [ \t]+
+        """
+        \A [ \t]+
 
-            (?<name> [\w-[0-9]] [\w-]* )
+        (?<name> [\w-[0-9]] [\w-]* )
 
-            (?> [ \t]+
-                (?<value> [^"" \t\r\n]+                     # unquoted
-                |         "" ( [^""] | """" )* ( "" | \z )  # quoted
-                )
-            )?
+        (?> [ \t]+
+            (?<value> [^" \t\r\n]+                  # unquoted
+            |         " ( [^"] | "" )* ( " | \z )   # quoted
+            )
+        )?
 
-            [ \t]* (-- .*)? \z
-        ",
+        [ \t]* (-- .*)? \z
+        """,
         Options
     );
 
     private const RegexOptions Options
-        = Multiline
+        = Multiline // ^ and $ match start and end of line; use \A and \z for start and end of input
         | IgnoreCase
         | CultureInvariant
         | IgnorePatternWhitespace
