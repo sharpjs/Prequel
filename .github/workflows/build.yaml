@@ -58,6 +58,21 @@ jobs:
           -p:Counter=${{ github.run_number }}
           -p:RepositoryCommit=${{ github.sha }}
 
+      - name: Publish Version
+        pwsh: true
+        run: |
+          Add-Content $env:GITHUB_STEP_SUMMARY @"
+          |            |                                   |
+          |:-----------|:----------------------------------|
+          | Version    | ``$env:VERSION``                  |
+          | Branch/Tag | ``$env:GITHUB_REF`` $env:HEAD_REF |
+          | Commit     | ``$env:GITHUB_SHA`` $env:HEAD_SHA |`n`n
+          "@
+        env:
+          VERSION:  ${{ steps.stamp.outputs.version }}
+          HEAD_REF: ${{ github.event.pull_request && format('(head = `{0}`)', github.event.pull_request.head.ref) }}
+          HEAD_SHA: ${{ github.event.pull_request && format('(head = `{0}`)', github.event.pull_request.head.sha) }}
+
       - name: Restore NuGet Packages
         run: dotnet restore
 
@@ -79,8 +94,18 @@ jobs:
         with:
           reports: ${{ runner.temp }}\coverage\raw\**\coverage.opencover.xml
           targetdir: ${{ runner.temp }}\coverage
-          reporttypes: Cobertura;JsonSummary;Html_Dark;Badges
+          reporttypes: Html;MarkdownSummaryGithub;Badges
           verbosity: Warning
+
+      - name: Publish Coverage Summary
+        pwsh: true
+        run: |
+          Add-Content $env:GITHUB_STEP_SUMMARY @(
+            "## Coverage`n"
+            Select-String '^#' $env:REPORT_PATH -NotMatch -Raw
+          )
+        env:
+          REPORT_PATH: ${{ runner.temp }}\coverage\SummaryGithub.md
 
       - name: Save Coverage Report
         uses: actions/upload-artifact@v4
