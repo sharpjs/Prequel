@@ -1,6 +1,7 @@
 // Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: MIT
 
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -103,16 +104,13 @@ public class SqlCmdPreprocessor
         return ProcessCore(input);
     }
 
-    private IEnumerable<string> ProcessCore(Input? input)
+    private IEnumerable<string> ProcessCore([DisallowNull] Input? input)
     {
         string batch;
 
         do
         {
-            // NULLS: On first iteration, input was null-checked by calling
-            // method.  On subsequent iterations, input was checked by the
-            // `do` condition.
-            (batch, input) = GetNextBatch(input!);
+            (batch, input) = GetNextBatch(input);
 
             if (batch.Length != 0)
                 yield return batch;
