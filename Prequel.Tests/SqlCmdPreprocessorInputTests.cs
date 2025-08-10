@@ -11,14 +11,16 @@ public class SqlCmdPreprocessorInputTests
     [Test]
     public void Construct_NullName()
     {
-        Invoking(() => new Input(null!, "any"))
-            .Should().Throw<ArgumentNullException>();
+        Should.Throw<ArgumentNullException>(
+            () => new Input(null!, "any")
+        );
     }
 
     [Test]
     public void Construct_NullText()
     {
-        Invoking(() => new Input("any", null!))
-            .Should().Throw<ArgumentNullException>();
+        Should.Throw<ArgumentNullException>(
+            () => new Input("any", null!)
+        );
     }
 }
