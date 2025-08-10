@@ -12,7 +12,7 @@ Prequel is a minimal SQLCMD-compatible preprocessor.
 [![NuGet](https://img.shields.io/nuget/v/Prequel.svg)](https://www.nuget.org/packages/Prequel)
 [![NuGet](https://img.shields.io/nuget/dt/Prequel.svg)](https://www.nuget.org/packages/Prequel)
 
-- **Stable:**     in private use for years with very few reported defects.
+- **Stable:**     in public and private use for years with very few reported defects.
 - **Tested:**     100% coverage by automated tests.
 - **Documented:** IntelliSense on everything.
 
