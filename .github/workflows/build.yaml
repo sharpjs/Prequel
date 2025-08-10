@@ -22,6 +22,9 @@ on:
   workflow_dispatch:
     # no options
 
+permissions:
+  contents: write # required by ncipollo/release-action@v1
+
 env:
   # Minimize noise from dotnet CLI
   DOTNET_NOLOGO: 1
@@ -34,11 +37,11 @@ jobs:
 
     steps:
       - name: Check Out Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         #url: https://github.com/actions/checkout
 
       - name: Configure .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         #url: https://github.com/actions/setup-dotnet
         with:
           dotnet-version: |
@@ -71,7 +74,7 @@ jobs:
           --results-directory:${{ runner.temp }}\coverage\raw
 
       - name: Prepare Coverage Report
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.11
+        uses: danielpalme/ReportGenerator-GitHub-Action@5
         #url: https://github.com/danielpalme/ReportGenerator-GitHub-Action
         with:
           reports: ${{ runner.temp }}\coverage\raw\**\coverage.opencover.xml
@@ -80,7 +83,7 @@ jobs:
           verbosity: Warning
 
       - name: Save Coverage Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         #url: https://github.com/actions/upload-artifact
         with:
           name: Coverage Report
@@ -88,7 +91,7 @@ jobs:
           if-no-files-found: error
 
       - name: Save Package
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         #url: https://github.com/actions/upload-artifact
         with:
           name: Packages
