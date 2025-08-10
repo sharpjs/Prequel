@@ -82,6 +82,9 @@ SELECT $(Columns) FROM Foo;
 
 Preprocessor directives are case-insensitive.
 
+Variable names are case-insensitive.  A variable name must start with a letter
+or underscore and may contain letters, digits, underscores, and hyphens.
+
 A `GO` batch separator must appear the the beginning of a line.
 No other content may appear on that line.
 
