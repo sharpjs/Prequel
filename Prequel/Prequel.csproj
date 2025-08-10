@@ -11,4 +11,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Nullable" PrivateAssets="all" />
+  </ItemGroup>
+
 </Project>
