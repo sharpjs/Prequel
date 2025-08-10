@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <Description>Minimal SQLCMD-compatible preprocessor</Description>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 

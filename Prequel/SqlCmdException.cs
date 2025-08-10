@@ -1,7 +1,9 @@
 // Copyright Subatomix Research Inc.
 // SPDX-License-Identifier: MIT
 
+#if !NET8_OR_GREATER
 using System.Runtime.Serialization;
+#endif
 
 namespace Prequel;
 
@@ -9,7 +11,9 @@ namespace Prequel;
 ///   Represents an error that occurred during the operation of
 ///   <see cref="SqlCmdPreprocessor"/>.
 /// </summary>
+#if !NET8_OR_GREATER
 [Serializable]
+#endif
 public class SqlCmdException : Exception
 {
     /// <summary>
@@ -43,6 +47,7 @@ public class SqlCmdException : Exception
     public SqlCmdException(string message, Exception? innerException)
         : base(message, innerException) { }
 
+#if !NET8_0_OR_GREATER
     /// <summary>
     ///   Initializes a new <see cref="SqlCmdException"/> instance with
     ///   serialized data.
@@ -65,4 +70,5 @@ public class SqlCmdException : Exception
     [Obsolete("BinaryFormatter serialization is insecure and cannot be made secure.")]
     protected SqlCmdException(SerializationInfo info, StreamingContext context)
         : base(info, context) { }
+#endif
 }
