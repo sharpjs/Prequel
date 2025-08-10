@@ -23,4 +23,11 @@ public class SqlCmdPreprocessorInputTests
             () => new Input("any", null!)
         );
     }
+
+    [Test]
+    public void Name()
+    {
+        new Input("Foo", "any")
+            .Name.Should().Be("Foo");
+    }
 }
