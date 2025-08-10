@@ -7,6 +7,7 @@ Most lines should begin with one of these words:
 ## [Unreleased](https://github.com/sharpjs/Prequel/compare/release/1.0.3..HEAD)
 - Change license from ISC to MIT.
 - Add .NET 8.0 target framework.
+- Fix `-` not recognized in `$(…)` syntax.
 
 <!--
 ## [1.1.0](https://github.com/sharpjs/Prequel/compare/release/1.0.3..release/1.1.0)

@@ -444,7 +444,7 @@ public class SqlCmdPreprocessor
 
     private static readonly Regex VariableRegex = new(
         """
-        \$\( (?<name>\w+) \)
+        \$\( (?<name> [\w-[\d]] [-\w]* ) \)
         """,
         Options
     );
@@ -466,7 +466,7 @@ public class SqlCmdPreprocessor
         """
         \A [ \t]+
 
-        (?<name> [\w-[0-9]] [\w-]* )
+        (?<name> [\w-[\d]] [-\w]* )
 
         (?> [ \t]+
             (?<value> [^" \t\r\n]+                  # unquoted
