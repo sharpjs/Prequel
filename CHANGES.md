@@ -7,6 +7,8 @@ Most lines should begin with one of these words:
 ## [Unreleased](https://github.com/sharpjs/Prequel/compare/release/1.0.3..HEAD)
 - Change license from ISC to MIT.
 - Add .NET 8.0 target framework.
+- Add optional variable replacement in comments.  Set the `SqlCmdPreprocessor`
+    property `EnableVariableReplacementInComments` to `true` to enable this feature.
 - Fix `-` not recognized in `$(…)` syntax.
 
 <!--

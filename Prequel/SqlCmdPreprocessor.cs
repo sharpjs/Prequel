@@ -64,6 +64,13 @@ public class SqlCmdPreprocessor
         => _variables;
 
     /// <summary>
+    ///   Gets or sets whether the preprocessor performs variable replacement
+    ///   in comments.  The default value is <see langword="false"/> to match
+    ///   SQLCMD behavior.
+    /// </summary>
+    public bool EnableVariableReplacementInComments { get; set; }
+
+    /// <summary>
     ///   Preprocesses the specified text.
     /// </summary>
     /// <param name="text">
@@ -151,7 +158,11 @@ public class SqlCmdPreprocessor
                 default:
                 case '-':
                 case '/':
-                    // Comments are verbatim
+                    // Variable expansion requires switch to builder mode
+                    if (EnableVariableReplacementInComments && HasVariableReplacement(match.Value))
+                        return BuildNextBatch(input, start, match);
+
+                    // Other comments are verbatim
                     continue;
 
                 // Quoted
@@ -211,8 +222,11 @@ public class SqlCmdPreprocessor
                 default:
                 case '-':
                 case '/':
-                    // Comments are verbatim
-                    builder.Append(match.Value);
+                    // Comments are subject to variable replacement if enabled
+                    if (EnableVariableReplacementInComments)
+                        PerformVariableReplacement(match.Value);
+                    else
+                        builder.Append(match.Value);
                     break;
 
                 // Quoted

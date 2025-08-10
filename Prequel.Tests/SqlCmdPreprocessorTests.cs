@@ -221,7 +221,7 @@ public class SqlCmdPreprocessorTests
 
     [Test]
     [TestCaseSource(nameof(EolEofCases))]
-    public void Process_VariableReplacement_WithComments(string eol, string eof)
+    public void Process_VariableReplacement_WithComments_Default(string eol, string eof)
     {
         var preprocessor = new SqlCmdPreprocessor
         {
@@ -229,11 +229,30 @@ public class SqlCmdPreprocessorTests
         };
 
         var batches = preprocessor.Process(
-            Lines(eol, eof, "a $(FOO) b /* $(FOO) */ $(FOO) -- $(FOO)")
+            Lines(eol, eof, "-- $(FOO)", "a $(FOO) b /* $(FOO) */ $(FOO) -- $(FOO)")
         );
 
         batches.Should().Equal(
-            Lines(eol, eof, "a bar b /* $(FOO) */ bar -- $(FOO)")
+            Lines(eol, eof, "-- $(FOO)", "a bar b /* $(FOO) */ bar -- $(FOO)")
+        );
+    }
+
+    [Test]
+    [TestCaseSource(nameof(EolEofCases))]
+    public void Process_VariableReplacement_WithComments_ReplacementEnabled(string eol, string eof)
+    {
+        var preprocessor = new SqlCmdPreprocessor
+        {
+            Variables = { ["foo"] = "bar" },
+            EnableVariableReplacementInComments = true
+        };
+
+        var batches = preprocessor.Process(
+            Lines(eol, eof, "-- $(FOO)", "a $(FOO) b /* $(FOO) */ $(FOO) -- $(FOO)")
+        );
+
+        batches.Should().Equal(
+            Lines(eol, eof, "-- bar", "a bar b /* bar */ bar -- bar")
         );
     }
 
