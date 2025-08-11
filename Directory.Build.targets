@@ -13,11 +13,11 @@
 
   <ItemGroup Condition="'$(IsPackable)' == 'true'">
     <None Include="..\icon.png" LinkBase="Properties"
-          Pack="true" PackagePath="$(PackageIcon)" CopyToOutputDirectory="Never" />
+          Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
     <None Include="..\LICENSE.txt" LinkBase="Properties"
-          Pack="true" PackagePath="$(PackageLicenseFile)" CopyToOutputDirectory="Never" />
+          Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
     <None Include="..\README.md" LinkBase="Properties"
-          Pack="true" PackagePath="$(PackageReadmeFile)" CopyToOutputDirectory="Never" />
+          Pack="true" PackagePath="" CopyToOutputDirectory="Never" />
   </ItemGroup>
 
   <!-- Visibility -->
