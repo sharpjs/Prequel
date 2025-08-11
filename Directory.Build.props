@@ -19,7 +19,9 @@
     <Authors>Jeffrey Sharp</Authors>
     <Company>Subatomix Research Inc.</Company>
     <Copyright>© $([System.DateTime]::UtcNow.Year) $(Company)</Copyright>
-    <PackageLicenseExpression>ISC</PackageLicenseExpression>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/sharpjs/Prequel</PackageProjectUrl>
     <PackageTags>sqlcmd sql preprocessor</PackageTags>
     <PackageReleaseNotes>$(PackageProjectUrl)/blob/main/CHANGES.md</PackageReleaseNotes>
