@@ -20,11 +20,11 @@
     <Company>Subatomix Research Inc.</Company>
     <Copyright>© $([System.DateTime]::UtcNow.Year) $(Company)</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/sharpjs/Prequel</PackageProjectUrl>
     <PackageTags>sqlcmd sql preprocessor</PackageTags>
     <PackageReleaseNotes>$(PackageProjectUrl)/blob/main/CHANGES.md</PackageReleaseNotes>
     <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
   </PropertyGroup>
