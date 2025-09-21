@@ -1,6 +1,6 @@
 # Prequel
 
-Prequel is a minimal SQLCMD-compatible preprocessor.
+Prequel is a minimal SQLCMD-compatible preprocessor for .NET.
 
 - Adds a 'SQLCMD mode' to your project with a couple lines of code.
 - Supports `GO`, `$(var)`, `:setvar`, and `:r`.
@@ -92,6 +92,9 @@ A `:setvar` or `:r` directive must appear at the beginning of a line.
 An optional line comment may follow the directive.
 
 `$(…)` may appear anywhere, including inside other preprocessor directives.
+
+Prequel will not expand `$(…)` inside comments by default.  To enable this,
+set the preprocessor's `ExpandVariablesInComments` property to `true`.
 
 `:r` directive paths may be either absolute or relative.  **Relative paths are
 relative to the current directory**, which matches `sqlcmd.exe` behavior.  To
