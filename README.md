@@ -14,7 +14,7 @@ Prequel is a minimal SQLCMD-compatible preprocessor.
 
 - **Stable:**     in public and private use for years with very few reported defects.
 - **Tested:**     100% coverage by automated tests.
-- **Documented:** IntelliSense on everything.
+- **Documented:** IntelliSense on everything.  Guide below.
 
 ## Installation
 
@@ -80,10 +80,10 @@ SELECT $(Columns) FROM Foo;
 
 ### Notes
 
-Preprocessor directives are case-insensitive.
+Preprocessor directives and variable names are case-insensitive.
 
-Variable names are case-insensitive.  A variable name must start with a letter
-or underscore and may contain letters, digits, underscores, and hyphens.
+A preprocessor variable name must start with a letter or underscore and may
+contain letters, digits, underscores, and hyphens.
 
 A `GO` batch separator must appear the the beginning of a line.
 No other content may appear on that line.
@@ -92,6 +92,23 @@ A `:setvar` or `:r` directive must appear at the beginning of a line.
 An optional line comment may follow the directive.
 
 `$(…)` may appear anywhere, including inside other preprocessor directives.
+
+`:r` directive paths may be either absolute or relative.  **Relative paths are
+relative to the current directory**, which matches `sqlcmd.exe` behavior.  To
+use paths relative to some other directory, store the absolute path of that
+directory in a variable like `Path`; then use the variable in `:r` directives.
+
+Any `\` or `/` characters in a `:r` directive path are replaced with the
+platform's directory separator character.
+
+To include a literal `"` in a double-quoted `:setvar` or `:r` directive, use
+`""`.  Note that Windows does not allow `"` in file paths, while other
+platforms do.
+
+```sql
+:setvar Foo "My ""special"" value." -- this works
+:r "My ""special"" file.sql"        -- this works on Linux but not on Windows
+```
 
 <!--
   Copyright Subatomix Research Inc.
